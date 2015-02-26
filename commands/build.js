@@ -1,11 +1,9 @@
 var Command = require('ronin').Command;
 var gulp = require('../lib/gulp');
 
-require('../lib/gulp/theme_tasks');
+var Build = Command.extend({
+  desc: 'Build theme',
 
-var Dev = Command.extend({
-  desc: 'Develop theme',
-  
   options: {
       branch: {
           type: 'string',
@@ -15,7 +13,7 @@ var Dev = Command.extend({
   
   run: function (branch) {
   	if (!branch) {
-  	    throw new Error('--branch is required. For example: kt dev -b v2');
+  	    throw new Error('--branch is required. For example: kt build -b v2');
   	}
 
   	require('../lib/gulp/theme_tasks');
@@ -25,8 +23,8 @@ var Dev = Command.extend({
   	process.env.KULER_CURRENT_THEME = themeData.theme;
   	process.env.KULER_CURRRENT_BRANCH = branch;
 
-    gulp.start.apply(gulp, ['serve']);
+    gulp.start.apply(gulp, ['build']);
   }
 });
 
-module.exports = Dev;
+module.exports = Build;

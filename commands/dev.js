@@ -20,10 +20,7 @@ var Dev = Command.extend({
   	var themeData = require(process.cwd() + '/theme.json');
 
   	var gulp = new Gulp();
-  	themeTaskInit(gulp);
-
-  	process.env.KULER_CURRENT_THEME = themeData.theme;
-  	process.env.KULER_CURRRENT_BRANCH = branch;
+  	themeTaskInit(gulp, themeData.theme, branch);
 
     gulp.start('serve');
   }

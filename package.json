@@ -9,10 +9,12 @@
     "gulp": "^3.8.11",
     "gulp-less-sourcemap": "^1.4.2",
     "gulp-util": "^3.0.4",
+    "orchestrator": "^0.3.7",
     "pretty-hrtime": "^1.0.0",
     "q": "^1.2.0",
     "ronin": "^0.1.2",
-    "run-sequence": "^1.0.2"
+    "run-sequence": "^1.0.2",
+    "vinyl-fs": "^0.3.13"
   },
   "bin": {
     "kt": "./bin/kt"

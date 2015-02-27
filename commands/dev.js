@@ -1,8 +1,6 @@
 var Command = require('ronin').Command;
 var gulp = require('../lib/gulp');
 
-require('../lib/gulp/theme_tasks');
-
 var Dev = Command.extend({
   desc: 'Develop theme',
   
@@ -25,7 +23,7 @@ var Dev = Command.extend({
   	process.env.KULER_CURRENT_THEME = themeData.theme;
   	process.env.KULER_CURRRENT_BRANCH = branch;
 
-    gulp.start.apply(gulp, ['serve']);
+    gulp.start('serve');
   }
 });
 

@@ -23,7 +23,7 @@ var Build = Command.extend({
   	process.env.KULER_CURRENT_THEME = themeData.theme;
   	process.env.KULER_CURRRENT_BRANCH = branch;
 
-    gulp.start.apply(gulp, ['build']);
+    gulp.start('build');
   }
 });
 

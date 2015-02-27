@@ -20,6 +20,9 @@ var Package = Command.extend({
         var itemPath = path.join(packagesPath, item.name, 'Theme_Package');
         var installPath = path.join(itemPath, 'Theme');
 
+        var modulesPath = path.normalize(process.env['KULER_MODULES_PATH_' + item.folder]);
+        var resourcePath = path.normalize(path.join(process.env['KULER_RESOURCE_PATH_' + item.folder], item.resource_path));
+
         var promises = [];
 
         // Build theme of branch
@@ -41,6 +44,21 @@ var Package = Command.extend({
               .src(item.theme_path + '/**/*')
               .pipe(gulp.dest(installPath));
           });
+
+        // Copy modules
+        item.module_paths.forEach(function (module) {
+          var gulp = new Gulp();
+
+          gulp
+            .src(path.join(modulesPath, module, '**', '*'))
+            .pipe(gulp.dest(installPath));
+        });
+
+        // Copy resources
+        var gulp = new Gulp();
+        gulp
+          .src([path.join(resourcePath, '**', '*'), '!' + path.join(resourcePath, '**', 'desktop.ini')])
+          .pipe(gulp.dest(itemPath));
       });
     });
 
